@@ -102,7 +102,7 @@ namespace Eparameter
 	NAMED_PARAMETER(name, char*);
 	NAMED_PARAMETER(score, int);
 
-	NAMED_FUNCTION(f, score, 0, name, "x", slew, (float)0.1)
+	NAMED_FUNCTION(f, (score)(name)(slew))
 	{
 		std::cout << "score: " << score.value << " name: " << name.value << " slew: " << slew.value << std::endl;
 	}
@@ -200,12 +200,12 @@ int ch9(int argc, _TCHAR* argv[])
 
 	using namespace Eparameter;
 
-	f(score = 3);
-	f(score = 3, name = "e");
-	f(slew = (float)0.799, name = "z", score = 4);
+	//f(score = 3);
+	//f(score = 3, name = "e");
+	//f(slew = (float)0.799, name = "z", score = 4);
 	f(score = 2, name = "x", slew = (float)0.599);
-	f(score = 3, name = "e");
-	f(name = "t", slew = (float)0.389, score = 8);
+	//f(score = 3, name = "e");
+	//f(name = "t", slew = (float)0.389, score = 8);
 	//f();
 	//f(3, "y", 0.2);
 
