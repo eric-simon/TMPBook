@@ -104,7 +104,7 @@ namespace Eparameter
 
 	NAMED_FUNCTION(f, ((score, 0))((name, "x"))((slew, 0.1)))
 	{
-		std::cout << "score: " << score.value << " name: " << name.value << " slew: " << slew.value << std::endl;
+		std::cout << "score: " << arg_score.value << " name: " << arg_name.value << " slew: " << arg_slew.value << std::endl;
 	}
 };
 
