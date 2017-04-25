@@ -14,6 +14,7 @@
 #include "ch3.h"
 #include "ch4.h"
 #include "ch9.h"
+#include "ch11.h"
 
 template <bool B, class U, class V> struct select_type;
 
@@ -257,6 +258,8 @@ struct binary<0>
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	ch11(argc, argv);
+
 	ch9(argc, argv);
 
 	ch3(argc, argv);

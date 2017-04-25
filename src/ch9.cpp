@@ -14,6 +14,8 @@
 #include "generalized_iterator.h"
 #include "calculator.h"
 #include "named_parameters.h"
+#include "measurementFile.h"
+#include <boost/foreach.hpp>
 
 float input[5] = { 0.0f, 0.1f, 0.2f, 0.3f, 0.4f };
 
@@ -104,7 +106,7 @@ namespace Eparameter
 
 	NAMED_FUNCTION(f, ((score, 0))((name, "x"))((slew, 0.1)))
 	{
-		std::cout << "score: " << arg_score.value << " name: " << arg_name.value << " slew: " << arg_slew.value << std::endl;
+		std::cout << "score: " << param[score] << " name: " << param[name] << " slew: " << param[slew] << std::endl;
 	}
 };
 
@@ -192,7 +194,7 @@ int ch9(int argc, _TCHAR* argv[])
 
 	test_decrement(make_iterator_wrapper(myList.end()));
 
-	calculator calc; ///our grammar
+	//calculator calc; ///our grammar
 
 	std::string str;
 
@@ -200,20 +202,28 @@ int ch9(int argc, _TCHAR* argv[])
 
 	using namespace Eparameter;
 
-	f(score = 3);
-	f(score = 3, name = "e");
-	//f(slew = (float)0.799, name = "z", score = 4);
+	//f(score = 3);
+	//f(score = 3, name = "e");
+	f(slew = (float)0.799, name = "z", score = 4);
 	f(score = 2, name = "x", slew = (float)0.599);
-	f(score = 3, name = "e");
-	//f(name = "t", slew = (float)0.389, score = 8);
-	f();
+	//f(score = 3, name = "e");
+	f(name = "t", slew = (float)0.389, score = 8);
+	//f();
 	//f(3, "y", 0.2);
+
+	std::vector<double> c;
 
 	while (std::getline(std::cin, str))
 	{
 		int n = 0;
-		boost::spirit::classic::parse(str.c_str(), calc[phoenix::var(n) = phoenix::arg1], boost::spirit::classic::space_p);
-		std::cout << "result = " << n << std::endl;
+		parse_numbers(str.begin(), str.end(), c);
+
+		BOOST_FOREACH(double& s, c)
+		{
+			std::cout << "result = " << s << std::endl;
+		}
+
+		c.clear();
 	}
 
 
