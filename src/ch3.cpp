@@ -20,6 +20,7 @@
 #include "ch3.h"
 #include "binary.h"
 #include "boost/mpl/equal_to.hpp"
+#include <boost/core/enable_if.hpp>
 
 using namespace boost::mpl;
 
